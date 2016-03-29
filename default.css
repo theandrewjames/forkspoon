@@ -33,3 +33,7 @@
 .addressDiv {
   float: right;
 }
+
+#login-button {
+  margin-left: 70px;
+}

@@ -48,6 +48,24 @@ var restaurants = [
     type: "European",
     images: ["images/mamapapa1.jpg", "images/mamapapa2.jpg"],
     dataId: 4
+  },
+  {
+    name: "Yume Sushi",
+    website: "",
+    phoneNumber: "(510) 865-7141",
+    address: "1428 Park St, Alameda, CA, 94501",
+    type: "Sushi",
+    images: ["images/yume1.jpg", "images/yume2.jpg"],
+    dataId: 5
+  },
+  {
+    name: "Chai Thai Noodles",
+    website: "chaithainoodle.com",
+    phoneNumber: "(510) 832-2500",
+    address: "545 International Blvd Ste B, Oakland, CA, 94606",
+    type: "Thai",
+    images: ["images/chaithai1.jpg", "images/chaithai2.jpg"],
+    dataId: 6
   }
 ];
 
