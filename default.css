@@ -1,12 +1,35 @@
 #logo {
-  height: 40px;
+  height: 70px;
   margin-right: 20px;
 }
 
 .search-bar {
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 .navbar-brand {
   padding-top: 2px;
+}
+
+.navbar {
+  height: 75px;
+  background-color: #ff0002;
+}
+
+.resultImage {
+  height: 100px;
+  float: left;
+}
+
+.result-panel {
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+.nameDiv {
+  padding-left: 50px;
+}
+
+.addressDiv {
+  float: right;
 }
