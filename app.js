@@ -12,6 +12,7 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/yojimbo1.jpg", "images/yojimbo2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 0
   },
   {
@@ -22,6 +23,7 @@ var restaurants = [
     type: ["Italian", "Pizza"],
     images: ["images/spin1.jpg", "images/spin2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 1
   },
   {
@@ -32,6 +34,7 @@ var restaurants = [
     type: ["Chicken", "Sandwiches"],
     images: ["images/lolas1.jpg", "images/lolas2.jpg"],
     cost: "$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 2
   },
   {
@@ -42,6 +45,7 @@ var restaurants = [
     type: ["Italian", "Bars"],
     images: ["images/trabocco1.jpg", "images/trabocco2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 3
   },
   {
@@ -52,6 +56,7 @@ var restaurants = [
     type: ["European", "Tea"],
     images: ["images/mamapapa1.jpg", "images/mamapapa2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 4
   },
   {
@@ -62,6 +67,7 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/yume1.jpg", "images/yume2.jpg"],
     cost: "$$$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 5
   },
   {
@@ -72,6 +78,7 @@ var restaurants = [
     type: ["Thai", "Noodles"],
     images: ["images/chaithai1.jpg", "images/chaithai2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 6
   },
   {
@@ -82,6 +89,7 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/kamakura1.jpg", "images/kamakura2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 7
   },
   {
@@ -92,6 +100,7 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/sushihouse1.jpg", "images/sushihouse2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 8
   },
   {
@@ -102,6 +111,7 @@ var restaurants = [
     type: ["Chicken", "Korean"],
     images: ["images/chickenfire1.jpg", "images/chickenfire2.jpg"],
     cost: "$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 9
   },
   {
@@ -112,6 +122,7 @@ var restaurants = [
     type: ["Italian", "Mediterranean"],
     images: ["images/frascati1.jpg", "images/frascati2.jpg"],
     cost: "$$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 10
   },
   {
@@ -122,6 +133,7 @@ var restaurants = [
     type: ["Italian", "Seafood"],
     images: ["images/sottomare1.jpg", "images/sottomare2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 11
   },
   {
@@ -132,6 +144,7 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/kusakabe1.jpg", "images/kusakabe2.jpg"],
     cost: "$$$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 12
   },
   {
@@ -142,6 +155,7 @@ var restaurants = [
     type: ["pizza", " "],
     images: ["images/bluebird1.jpg", "images/bluebird2.jpg"],
     cost: "$$",
+    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
     dataId: 13
   }
 ];
@@ -156,12 +170,14 @@ app.get("/search", function(req, res) {
   }
   for(var i = 0;i < restaurants.length;i++) {
     if(req.query.q == restaurants[i].type[0].toLowerCase() || req.query.q == restaurants[i].type[1].toLowerCase()) {
-      matchedRestaurants.push(restaurants[i])
+      matchedRestaurants.push(restaurants[i]);
     }
   } if(matchedRestaurants.length > 0) {
     res.json(matchedRestaurants);
   }
 })
+
+
 
 app.listen(8080, function() {
   console.log("Listening on port 8080")
