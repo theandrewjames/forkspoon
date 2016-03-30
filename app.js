@@ -152,7 +152,7 @@ var restaurants = [
     website: "",
     phoneNumber: "(510) 562-1199",
     address: "496 E 14th St, San Leandro, CA, 94577",
-    type: ["pizza", " "],
+    type: ["pizza"],
     images: ["images/bluebird1.jpg", "images/bluebird2.jpg"],
     cost: "$$",
     reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
@@ -160,21 +160,21 @@ var restaurants = [
   }
 ];
 
-var matchedRestaurants = [];
+
 
 app.use(express.static("./"));
 
 app.get("/search", function(req, res) {
-  while(matchedRestaurants.length > 0) {
-    matchedRestaurants.pop();
-  }
+  var matchedRestaurants = [];
   for(var i = 0;i < restaurants.length;i++) {
-    if(req.query.q == restaurants[i].type[0].toLowerCase() || req.query.q == restaurants[i].type[1].toLowerCase()) {
-      matchedRestaurants.push(restaurants[i]);
+    for(var x = 0;x < restaurants[i].type.length;x++) {
+      if(req.query.q == restaurants[i].type[x].toLowerCase()) {
+        matchedRestaurants.push(restaurants[i]);
+      }
     }
   } if(matchedRestaurants.length > 0) {
     res.json(matchedRestaurants);
-  }
+  } 
 })
 
 
