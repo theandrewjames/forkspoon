@@ -2,9 +2,12 @@ var search = document.getElementById("search-box");
 var resultsDiv = document.getElementById("results");
 var restaurantTitle = document.getElementsByClassName("restaurantTitle");
 var itemRow = document.getElementsByClassName("itemRow");
+var writeReview = document.getElementsByClassName("writeReview");
+var searchForm = document.getElementById("searchForm");
 
 
-search.addEventListener("click", function() {
+searchForm.addEventListener("submit", function() {
+  event.preventDefault();
   var searchValue = search.value.toLowerCase();
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "/search?q=" + searchValue, true);
@@ -42,6 +45,7 @@ search.addEventListener("click", function() {
         reviewTextArea.setAttribute("placeholder", "Type review here.");
         reviewTextArea.setAttribute("data-id", results[i].dataId)
         submitReviewButton.setAttribute("type", "submit");
+        writeReviewPanel.setAttribute("data-id", results[i].dataId)
         submitReviewButton.textContent = "Submit Review"
         nameDiv.className = "nameDiv col-md-6";
         image.className = "img-responsive resultImage img-rounded";
@@ -49,12 +53,12 @@ search.addEventListener("click", function() {
         panel.className = "col-md-9 panel panel-default result-panel";
         columnDiv.className = "col-md-12 panel-body";
         addressDiv.className = "col-md-3 addressDiv";
-        writeReviewPanel.className = "col-md-8 panel panel-default panel-body";
+        writeReviewPanel.className = "col-md-8 panel panel-default panel-body hidden writeReview";
         nameFormGroup.className = "form-group";
         reviewerNameInput.className = "form-control reviewerName";
         reviewFormGroup.className = "form-group";
         reviewTextArea.className = "form-control reviewerReview";
-        submitReviewButton.className = "btn btn-default submitReview";
+        submitReviewButton.className = "btn btn-primary submitReview";
         nameFormGroup.appendChild(reviewerNameInput);
         writeReviewForm.appendChild(nameFormGroup);
         reviewFormGroup.appendChild(reviewTextArea);
@@ -97,6 +101,11 @@ search.addEventListener("click", function() {
         for(var i = 0;i < reviewsDiv.length;i++) {
           if(reviewsDiv[i].dataset.id == titleId) {
             reviewsDiv[i].classList.remove("hidden");
+          }
+        }
+        for(var i = 0;i < writeReview.length;i++) {
+          if(writeReview[i].dataset.id == titleId) {
+            writeReview[i].classList.remove("hidden");
           }
         }
       })

@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
-var jsonParser = require("body-parser").json();
-var nodemon = require("nodemon");
+
+
 
 var restaurants = [
   {
@@ -174,7 +174,9 @@ app.get("/search", function(req, res) {
     }
   } if(matchedRestaurants.length > 0) {
     res.json(matchedRestaurants);
-  } 
+  } else {
+    res.sendStatus(404);
+  }
 })
 
 
