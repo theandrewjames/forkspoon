@@ -2,7 +2,7 @@ var search = document.getElementById("search-box");
 var resultsDiv = document.getElementById("results");
 var restaurantTitle = document.getElementsByClassName("restaurantTitle");
 var itemRow = document.getElementsByClassName("itemRow");
-var reviewsDiv = document.getElementsByClassName('reviews-panel')
+
 
 search.addEventListener("click", function() {
   var searchValue = search.value.toLowerCase();
@@ -45,24 +45,30 @@ search.addEventListener("click", function() {
           var reviewsDiv = document.createElement("div");
           var reviewerName = document.createElement("div");
           var review = document.createElement("div");
-          reviewsDiv.className = "col-md-8 panel panel-default  reviews-panel";
+          reviewsDiv.className = "col-md-8 panel panel-default hidden reviews-panel";
           reviewsDiv.setAttribute("data-id", results[i].dataId)
           reviewerName.className = "panel-heading";
           reviewerName.innerHTML = results[i].reviews[x][0];
           review.textContent = results[i].reviews[x][1];
           reviewsDiv.appendChild(reviewerName);
           reviewsDiv.appendChild(review);
-          resultsDiv.appendChild(reviewsDiv);
+          resultRow.appendChild(reviewsDiv);
         }
       }
     }
     for(var i = 0;i < restaurantTitle.length;i++) {
       restaurantTitle[i].addEventListener("click", function() {
+        var reviewsDiv = document.getElementsByClassName('reviews-panel')
         var titleId = this.dataset.id;
         for(var i = 0;i < itemRow.length;i++) {
           var rowId = itemRow[i].dataset.id;
           if(rowId < titleId || rowId > titleId) {
             itemRow[i].classList.add("hidden");
+          }
+        }
+        for(var i = 0;i < reviewsDiv.length;i++) {
+          if(reviewsDiv[i].dataset.id == titleId) {
+            reviewsDiv[i].classList.remove("hidden");
           }
         }
       })
