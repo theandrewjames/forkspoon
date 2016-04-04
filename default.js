@@ -4,6 +4,9 @@ var restaurantTitle = document.getElementsByClassName("restaurantTitle");
 var itemRow = document.getElementsByClassName("itemRow");
 var writeReview = document.getElementsByClassName("writeReview");
 var searchForm = document.getElementById("searchForm");
+var reviewerName = document.getElementsByClassName("reviewerName");
+var reviewerReview = document.getElementsByClassName("reviewerReview");
+var reviewsPanel = document.getElementsByClassName("reviews-panel");
 
 
 searchForm.addEventListener("submit", function() {
@@ -19,46 +22,62 @@ searchForm.addEventListener("submit", function() {
       };
       var results = JSON.parse(xhr.responseText);
       for(var i = 0;i < results.length;i++) {
+
         var resultRow = document.createElement("div");
+        resultRow.setAttribute("data-id", results[i].dataId);
+        resultRow.className = "row itemRow";
+
         var panel = document.createElement("div");
+        panel.className = "col-md-9 panel panel-default result-panel";
+
         var image = document.createElement("img");
+        image.className = "img-responsive resultImage img-rounded";
+        image.setAttribute("src", results[i].images[0]);
+
         var nameDiv = document.createElement("div");
+        nameDiv.innerHTML = "<b>" + "<a class=restaurantTitle data-type=restaurantTitle data-id=" + results[i].dataId  + ">"+ results[i].name + "</a>" + "</b>" + "<br>" + "<a href="+
+        "http://" + results[i].website+">" + results[i].website + "</a>" + "<br>" + results[i].cost;
+        nameDiv.className = "nameDiv col-md-6";
+
         var row = document.createElement("row");
         var columnDiv = document.createElement("div");
+        columnDiv.className = "col-md-12 panel-body";
+
         var addressDiv = document.createElement("div");
-        var writeReviewPanel = document.createElement("div");
-        var writeReviewForm = document.createElement("form");
-        var nameFormGroup = document.createElement("div");
-        var reviewerNameInput = document.createElement("input");
-        var reviewFormGroup = document.createElement("div");
-        var reviewTextArea = document.createElement("textarea");
-        var submitReviewButton = document.createElement("button");
-        nameDiv.innerHTML = "<b>" + "<a class=restaurantTitle data-id=" + results[i].dataId + ">"+ results[i].name + "</a>" + "</b>" + "<br>" + "<a href="+
-        "http://" + results[i].website+">" + results[i].website + "</a>" + "<br>" + results[i].cost;
         addressDiv.innerHTML = results[i].address + "<br>" + results[i].phoneNumber;
-        image.setAttribute("src", results[i].images[0]);
-        resultRow.setAttribute("data-id", results[i].dataId);
+        addressDiv.className = "col-md-3 addressDiv";
+
+        var writeReviewPanel = document.createElement("div");
+        writeReviewPanel.setAttribute("data-id", results[i].dataId);
+        writeReviewPanel.className = "col-md-8 panel panel-default panel-body hidden writeReview";
+
+        var writeReviewForm = document.createElement("form");
+
+        var nameFormGroup = document.createElement("div");
+        nameFormGroup.className = "form-group";
+
+        var reviewerNameInput = document.createElement("input");
         reviewerNameInput.setAttribute("type", "text");
         reviewerNameInput.setAttribute("placeholder", "Name");
-        reviewerNameInput.setAttribute("data-id", results[i].dataId)
+        reviewerNameInput.setAttribute("data-id", results[i].dataId);
+        reviewerNameInput.className = "form-control reviewerName";
+
+        var reviewFormGroup = document.createElement("div");
+        reviewFormGroup.className = "form-group";
+
+        var reviewTextArea = document.createElement("textarea");
         reviewTextArea.setAttribute("rows", 2);
         reviewTextArea.setAttribute("placeholder", "Type review here.");
-        reviewTextArea.setAttribute("data-id", results[i].dataId)
-        submitReviewButton.setAttribute("type", "submit");
-        writeReviewPanel.setAttribute("data-id", results[i].dataId)
-        submitReviewButton.textContent = "Submit Review"
-        nameDiv.className = "nameDiv col-md-6";
-        image.className = "img-responsive resultImage img-rounded";
-        resultRow.className = "row itemRow";
-        panel.className = "col-md-9 panel panel-default result-panel";
-        columnDiv.className = "col-md-12 panel-body";
-        addressDiv.className = "col-md-3 addressDiv";
-        writeReviewPanel.className = "col-md-8 panel panel-default panel-body hidden writeReview";
-        nameFormGroup.className = "form-group";
-        reviewerNameInput.className = "form-control reviewerName";
-        reviewFormGroup.className = "form-group";
+        reviewTextArea.setAttribute("data-id", results[i].dataId);
         reviewTextArea.className = "form-control reviewerReview";
+
+        var submitReviewButton = document.createElement("button");
+        submitReviewButton.setAttribute("type", "button");
+        submitReviewButton.textContent = "Submit Review";
         submitReviewButton.className = "btn btn-primary submitReview";
+        submitReviewButton.setAttribute("data-type", "addReview");
+        submitReviewButton.setAttribute("data-id", results[i].dataId)
+
         nameFormGroup.appendChild(reviewerNameInput);
         writeReviewForm.appendChild(nameFormGroup);
         reviewFormGroup.appendChild(reviewTextArea);
@@ -109,6 +128,56 @@ searchForm.addEventListener("submit", function() {
           }
         }
       })
+    }
+  }
+})
+
+document.addEventListener("click", function() {
+  console.log(event.target.dataset.id);
+  if(event.target.dataset.type == "addReview") {
+    var id = event.target.dataset.id;
+    for(var i = 0;i < reviewerName.length;i++) {
+      if(reviewerName[i].dataset.id == event.target.dataset.id) {
+        var name = reviewerName[i].value;
+      }
+    }
+    for(var i = 0;i < reviewerReview.length;i++) {
+      if(reviewerReview[i].dataset.id == event.target.dataset.id) {
+        var review = reviewerReview[i].value;
+        var dataId = event.target.dataset.id;
+
+      }
+    }
+    var review = {
+      name: name,
+      review: review,
+      dataId: dataId
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/addReview", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(review));
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        var results = JSON.parse(xhr.responseText)
+        console.log(results)
+        console.log(id);
+        var reviewsDiv = document.createElement("div");
+        var reviewerName = document.createElement("div");
+        var review = document.createElement("div");
+        reviewsDiv.className = "col-md-8 panel panel-default reviews-panel";
+        reviewsDiv.setAttribute("data-id", id)
+        reviewerName.className = "panel-heading";
+        reviewerName.textContent = results[0][0];
+        review.textContent = results[0][1];
+        reviewsDiv.appendChild(reviewerName);
+        reviewsDiv.appendChild(review);
+        for(var i = 0;i < itemRow.length;i++) {
+          if(itemRow[i].dataset.id == id) {
+            itemRow[i].appendChild(reviewsDiv)
+          }
+        }
+      }
     }
   }
 })

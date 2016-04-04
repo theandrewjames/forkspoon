@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-
+var jsonParser = require("body-parser").json();
 
 
 var restaurants = [
@@ -178,6 +178,16 @@ app.get("/search", function(req, res) {
     res.sendStatus(404);
   }
 })
+
+app.post("/addReview", jsonParser, function(req,res) {
+  for(var i = 0;i < restaurants.length;i++){
+    if(req.body.dataId == restaurants[i].dataId) {
+      restaurants[i].reviews.unshift([req.body.name, req.body.review]);
+      res.json(restaurants[i].reviews)
+    }
+  }
+})
+
 
 
 
