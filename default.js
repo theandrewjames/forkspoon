@@ -167,12 +167,21 @@ searchForm.addEventListener("submit", function() {
           reviewerName.className = "panel-heading";
           reviewerName.innerHTML = results[i].reviews[x][0];
 
+          var reviewBody = document.createElement("div");
+          reviewBody.className = "panel-body";
+
+          var rating = document.createElement("div");
+          rating.className = "reviewRating";
+          rating.textContent = numberToStars(results[i].reviews[x][2]);
+
+
           var review = document.createElement("div");
           review.textContent = results[i].reviews[x][1];
-          review.className = "panel-body";
 
           reviewsDiv.appendChild(reviewerName);
-          reviewsDiv.appendChild(review);
+          reviewBody.appendChild(rating);
+          reviewBody.appendChild(review);
+          reviewsDiv.appendChild(reviewBody);
           resultRow.appendChild(reviewsDiv);
         }
       }
@@ -251,7 +260,6 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.responseText)
-        console.log(results)
         var reviewsDiv = document.createElement("div");
         reviewsDiv.className = "col-md-8 panel panel-default reviews-panel";
         reviewsDiv.setAttribute("data-id", id);
