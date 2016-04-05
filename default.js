@@ -68,9 +68,9 @@ searchForm.addEventListener("submit", function() {
 
         var nameDiv = document.createElement("div");
         nameDiv.innerHTML = "<b>" + "<a class=restaurantTitle data-type=restaurantTitle data-id="
-        + results[i].dataId  + ">"+ results[i].name + "</a>" + " " + numberToStars(results[i].rating) + "</b>" + "<br>" 
-        + "<a href=" + "http://" + results[i].website+">" + results[i].website +
-         "</a>" + "<br>" + results[i].cost;
+        + results[i].dataId  + ">"+ results[i].name + "</a>" + "</b>" + " " + numberToStars(results[i].rating) +
+        results[i].reviews.length + " " + "reviews" + "<br>" + "<a href=" +
+        "http://" + results[i].website+">" + results[i].website + "</a>" + "<br>" + results[i].cost;
         nameDiv.className = "nameDiv col-md-6";
 
 
@@ -332,9 +332,9 @@ document.addEventListener("click", function() {
           }
         }
       }
-      // else if(xhr.status == 404) {
-      //   console.log("Something")
-      // }
+      else if(xhr.status == 404) {
+        console.log("No review found.")
+      }
     }
   }
   if(event.target.dataset.type == "star") {

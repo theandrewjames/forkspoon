@@ -207,6 +207,7 @@ app.post("/addReview", jsonParser, function(req,res) {
   for(var i = 0;i < restaurants.length;i++){
     if(req.body.dataId == restaurants[i].dataId) {
       restaurants[i].reviews.unshift([req.body.name, req.body.review, req.body.stars]);
+      updateRating();
       match.push(restaurants[i]);
     }
   }
