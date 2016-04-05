@@ -242,7 +242,6 @@ searchForm.addEventListener("submit", function() {
       nonePanel.appendChild(noneBody);
       resultsDiv.appendChild(nonePanel)
     }
-    console.log(restaurantTitle)
     for(var i = 0;i < restaurantTitle.length;i++) {
       restaurantTitle[i].addEventListener("click", function() {
         var reviewsDiv = document.getElementsByClassName('reviews-panel')
