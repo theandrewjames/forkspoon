@@ -45,19 +45,51 @@ searchForm.addEventListener("submit", function() {
         var image = document.createElement("img");
         image.className = "img-responsive resultImage img-rounded";
         image.setAttribute("src", results[i].images[0]);
+        //Trying to switch from innerhtml but this code breaks it even though its identical
+        // var mainInfo = document.createElement("div");
+        // mainInfo.className = "nameDiv col-md-6";
+        //
+        // var restaurantTitle = document.createElement("a");
+        // restaurantTitle.className = "restaurantTitle";
+        // restaurantTitle.setAttribute("data-type", "restaurantTitle");
+        // restaurantTitle.setAttribute("data-id", results[i].dataId);
+        // restaurantTitle.textContent = results[i].name;
+        //
+        // var titleBreak = document.createElement("br");
+        //
+        // var site = document.createElement("a");
+        // site.setAttribute("href", "http://" + results[i].website);
+        // site.textContent = results[i].website;
+        //
+        // var siteBreak = document.createElement("br");
+        //
+        // var cost = document.createElement("div");
+        // cost.textContent = results[i].cost;
 
         var nameDiv = document.createElement("div");
-        nameDiv.innerHTML = "<b>" + "<a class=restaurantTitle data-type=restaurantTitle data-id=" + results[i].dataId  + ">"+ results[i].name + "</a>" + "</b>" + "<br>" + "<a href="+
-        "http://" + results[i].website+">" + results[i].website + "</a>" + "<br>" + results[i].cost;
+        nameDiv.innerHTML = "<b>" + "<a class=restaurantTitle data-type=restaurantTitle data-id="
+        + results[i].dataId  + ">"+ results[i].name + "</a>" + " " + numberToStars(results[i].rating) + "</b>" + "<br>" 
+        + "<a href=" + "http://" + results[i].website+">" + results[i].website +
+         "</a>" + "<br>" + results[i].cost;
         nameDiv.className = "nameDiv col-md-6";
+
 
         var row = document.createElement("row");
         var columnDiv = document.createElement("div");
         columnDiv.className = "col-md-12 panel-body";
 
+        var contactDiv = document.createElement("div");
+        contactDiv.className = "col-md-3 addressDiv";
+
         var addressDiv = document.createElement("div");
-        addressDiv.innerHTML = results[i].address + "<br>" + results[i].phoneNumber ;
-        addressDiv.className = "col-md-3 addressDiv";
+        addressDiv.textContent = results[i].address;
+
+        var contactBreak = document.createElement("br");
+
+        var phoneDiv = document.createElement("div");
+        phoneDiv.textContent = results[i].phoneNumber;
+
+
 
         var writeReviewPanel = document.createElement("div");
         writeReviewPanel.setAttribute("data-id", results[i].dataId);
@@ -150,14 +182,24 @@ searchForm.addEventListener("submit", function() {
         writeReviewForm.appendChild(ratingFormGroup);
         writeReviewPanel.appendChild(writeReviewForm)
         columnDiv.appendChild(image);
-        columnDiv.appendChild(nameDiv);
-        columnDiv.appendChild(addressDiv);
+        //Code to switch from innerhtml
+        // mainInfo.appendChild(restaurantTitle);
+        // mainInfo.appendChild(titleBreak);
+        // mainInfo.appendChild(site);
+        // mainInfo.appendChild(siteBreak);
+        // mainInfo.appendChild(cost);
+        // columnDiv.appendChild(mainInfo);
+        columnDiv.appendChild(nameDiv)
+        contactDiv.appendChild(addressDiv);
+        contactDiv.appendChild(contactBreak);
+        contactDiv.appendChild(phoneDiv);
+        columnDiv.appendChild(contactDiv);
         row.appendChild(columnDiv);
         panel.appendChild(row);
         resultRow.appendChild(panel);
         resultRow.appendChild(hr);
         resultsDiv.appendChild(resultRow);
-        resultRow.appendChild(writeReviewPanel)
+        resultRow.appendChild(writeReviewPanel);
         for(var x = 0;x < results[i].reviews.length;x++) {
           var reviewsDiv = document.createElement("div");
           reviewsDiv.className = "col-md-8 panel panel-default hidden reviews-panel";
@@ -200,6 +242,7 @@ searchForm.addEventListener("submit", function() {
       nonePanel.appendChild(noneBody);
       resultsDiv.appendChild(nonePanel)
     }
+    console.log(restaurantTitle)
     for(var i = 0;i < restaurantTitle.length;i++) {
       restaurantTitle[i].addEventListener("click", function() {
         var reviewsDiv = document.getElementsByClassName('reviews-panel')

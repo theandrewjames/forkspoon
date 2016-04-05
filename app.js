@@ -188,6 +188,7 @@ app.use(express.static("./"));
 
 app.get("/search", function(req, res) {
   var matchedRestaurants = [];
+  updateRating();
   for(var i = 0;i < restaurants.length;i++) {
     for(var x = 0;x < restaurants[i].type.length;x++) {
       if(req.query.q == restaurants[i].type[x].toLowerCase()) {
