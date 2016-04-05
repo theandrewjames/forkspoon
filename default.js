@@ -7,6 +7,15 @@ var searchForm = document.getElementById("searchForm");
 var reviewerName = document.getElementsByClassName("reviewerName");
 var reviewerReview = document.getElementsByClassName("reviewerReview");
 var reviewsPanel = document.getElementsByClassName("reviews-panel");
+var stars = document.getElementsByClassName("stars")
+
+function numberToStars(x) {
+  var stars = "";
+  for(var i = 0;i < x;i++) {
+    stars = stars + "★";
+  }
+  return stars;
+}
 
 
 searchForm.addEventListener("submit", function() {
@@ -30,6 +39,9 @@ searchForm.addEventListener("submit", function() {
         var panel = document.createElement("div");
         panel.className = "col-md-9 panel panel-default result-panel";
 
+        var hr = document.createElement("hr");
+        hr.className = "col-md-9 hr"
+
         var image = document.createElement("img");
         image.className = "img-responsive resultImage img-rounded";
         image.setAttribute("src", results[i].images[0]);
@@ -44,7 +56,7 @@ searchForm.addEventListener("submit", function() {
         columnDiv.className = "col-md-12 panel-body";
 
         var addressDiv = document.createElement("div");
-        addressDiv.innerHTML = results[i].address + "<br>" + results[i].phoneNumber;
+        addressDiv.innerHTML = results[i].address + "<br>" + results[i].phoneNumber ;
         addressDiv.className = "col-md-3 addressDiv";
 
         var writeReviewPanel = document.createElement("div");
@@ -71,10 +83,60 @@ searchForm.addEventListener("submit", function() {
         reviewTextArea.setAttribute("data-id", results[i].dataId);
         reviewTextArea.className = "form-control reviewerReview";
 
+        var ratingDiv = document.createElement("div");
+        ratingDiv.className = "rating col-md-4 col-md-offset-1";
+
+        var starOne = document.createElement("span");
+        starOne.setAttribute("data-type", "star");
+        starOne.setAttribute("data-id", results[i].dataId);
+        starOne.setAttribute("data-loc", 0);
+        starOne.className = "stars";
+        starOne.textContent = "☆";
+
+        var starTwo = document.createElement("span");
+        starTwo.setAttribute("data-type", "star");
+        starTwo.setAttribute("data-id", results[i].dataId);
+        starTwo.setAttribute("data-loc", 1);
+        starTwo.className = "stars";
+        starTwo.textContent = "☆";
+
+        var starThree = document.createElement("span");
+        starThree.setAttribute("data-type", "star");
+        starThree.setAttribute("data-id", results[i].dataId);
+        starThree.setAttribute("data-loc", 2);
+        starThree.className = "stars";
+        starThree.textContent = "☆";
+
+        var starFour = document.createElement("span");
+        starFour.setAttribute("data-type", "star");
+        starFour.setAttribute("data-id", results[i].dataId);
+        starFour.setAttribute("data-loc", 3);
+        starFour.className = "stars";
+        starFour.textContent = "☆";
+
+        var starFive = document.createElement("span");
+        starFive.setAttribute("data-type", "star");
+        starFive.setAttribute("data-id", results[i].dataId);
+        starFive.setAttribute("data-loc", 4);
+        starFive.className = "stars";
+        starFive.textContent = "☆";
+
+        ratingDiv.appendChild(starOne);
+        ratingDiv.appendChild(starTwo);
+        ratingDiv.appendChild(starThree);
+        ratingDiv.appendChild(starFour);
+        ratingDiv.appendChild(starFive);
+
+        var ratingFormGroup = document.createElement("div");
+        ratingFormGroup.className = "form-group";
+
+        var ratingRow = document.createElement("div");
+        ratingRow.className = "row";
+
         var submitReviewButton = document.createElement("button");
         submitReviewButton.setAttribute("type", "button");
-        submitReviewButton.textContent = "Submit Review";
-        submitReviewButton.className = "btn btn-primary submitReview";
+        submitReviewButton.textContent = "Submit Review" ;
+        submitReviewButton.className = "btn btn-primary submitReview col-md-4";
         submitReviewButton.setAttribute("data-type", "addReview");
         submitReviewButton.setAttribute("data-id", results[i].dataId)
 
@@ -82,7 +144,10 @@ searchForm.addEventListener("submit", function() {
         writeReviewForm.appendChild(nameFormGroup);
         reviewFormGroup.appendChild(reviewTextArea);
         writeReviewForm.appendChild(reviewFormGroup);
-        writeReviewForm.appendChild(submitReviewButton)
+        ratingRow.appendChild(ratingDiv);
+        ratingRow.appendChild(submitReviewButton)
+        ratingFormGroup.appendChild(ratingRow);
+        writeReviewForm.appendChild(ratingFormGroup);
         writeReviewPanel.appendChild(writeReviewForm)
         columnDiv.appendChild(image);
         columnDiv.appendChild(nameDiv);
@@ -90,22 +155,41 @@ searchForm.addEventListener("submit", function() {
         row.appendChild(columnDiv);
         panel.appendChild(row);
         resultRow.appendChild(panel);
+        resultRow.appendChild(hr);
         resultsDiv.appendChild(resultRow);
         resultRow.appendChild(writeReviewPanel)
         for(var x = 0;x < results[i].reviews.length;x++) {
           var reviewsDiv = document.createElement("div");
-          var reviewerName = document.createElement("div");
-          var review = document.createElement("div");
           reviewsDiv.className = "col-md-8 panel panel-default hidden reviews-panel";
-          reviewsDiv.setAttribute("data-id", results[i].dataId)
+          reviewsDiv.setAttribute("data-id", results[i].dataId);
+
+          var reviewerName = document.createElement("div");
           reviewerName.className = "panel-heading";
           reviewerName.innerHTML = results[i].reviews[x][0];
+
+          var review = document.createElement("div");
           review.textContent = results[i].reviews[x][1];
+          review.className = "panel-body";
+
           reviewsDiv.appendChild(reviewerName);
           reviewsDiv.appendChild(review);
           resultRow.appendChild(reviewsDiv);
         }
       }
+    }
+    else if(xhr.status == 404) {
+      while(resultsDiv.hasChildNodes()) {
+        resultsDiv.removeChild(resultsDiv.lastChild)
+      }
+      var nonePanel = document.createElement("div");
+      nonePanel.className = "panel panel-default col-md-7 col-md-offset-1";
+
+      var noneBody = document.createElement("div");
+      noneBody.className = "panel-body";
+      noneBody.textContent = "No results found. Try searching for pizza, sushi or chicken";
+
+      nonePanel.appendChild(noneBody);
+      resultsDiv.appendChild(nonePanel)
     }
     for(var i = 0;i < restaurantTitle.length;i++) {
       restaurantTitle[i].addEventListener("click", function() {
@@ -133,7 +217,6 @@ searchForm.addEventListener("submit", function() {
 })
 
 document.addEventListener("click", function() {
-  console.log(event.target.dataset.id);
   if(event.target.dataset.type == "addReview") {
     var id = event.target.dataset.id;
     for(var i = 0;i < reviewerName.length;i++) {
@@ -148,10 +231,18 @@ document.addEventListener("click", function() {
 
       }
     }
+    var matched = [];
+    for(var i = 0;i < stars.length;i++) {
+      if(stars[i].dataset.id == event.target.dataset.id && stars[i].classList.contains("fullStar")) {
+        matched.push(stars[i]);
+      }
+    }
+
     var review = {
       name: name,
       review: review,
-      dataId: dataId
+      dataId: dataId,
+      stars: matched.length
     };
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/addReview", true);
@@ -161,22 +252,50 @@ document.addEventListener("click", function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.responseText)
         console.log(results)
-        console.log(id);
         var reviewsDiv = document.createElement("div");
-        var reviewerName = document.createElement("div");
-        var review = document.createElement("div");
         reviewsDiv.className = "col-md-8 panel panel-default reviews-panel";
-        reviewsDiv.setAttribute("data-id", id)
+        reviewsDiv.setAttribute("data-id", id);
+
+        var reviewerName = document.createElement("div");
         reviewerName.className = "panel-heading";
-        reviewerName.textContent = results[0][0];
-        review.textContent = results[0][1];
+        reviewerName.textContent = results[0].reviews[0][0];
+
+        var rating = document.createElement("div");
+        rating.className = "reviewRating";
+        rating.textContent = numberToStars(results[0].reviews[0][2]);
+
+
+        var ratingReview = document.createElement("div");
+        ratingReview.className = "panel-body";
+
+        var review = document.createElement("div");
+        review.textContent = results[0].reviews[0][1];
+
         reviewsDiv.appendChild(reviewerName);
-        reviewsDiv.appendChild(review);
+        ratingReview.appendChild(rating);
+        ratingReview.appendChild(review)
+        reviewsDiv.appendChild(ratingReview);
         for(var i = 0;i < itemRow.length;i++) {
           if(itemRow[i].dataset.id == id) {
             itemRow[i].appendChild(reviewsDiv)
           }
         }
+      }
+      // else if(xhr.status == 404) {
+      //   console.log("Something")
+      // }
+    }
+  }
+  if(event.target.dataset.type == "star") {
+    var id = event.target.dataset.id;
+    var location = event.target.dataset.loc;
+    for(var i = 0;i < stars.length;i++) {
+      if(stars[i].dataset.id == id && stars[i].dataset.loc <= location) {
+        stars[i].textContent = "★";
+        stars[i].classList.add("fullStar");
+      } else if (stars[i].dataset.id == id && stars[i].dataset.loc >= location) {
+        stars[i].textContent = "☆";
+        stars[i].classList.remove("fullStar");
       }
     }
   }

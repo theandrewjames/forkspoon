@@ -12,7 +12,8 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/yojimbo1.jpg", "images/yojimbo2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 0
   },
   {
@@ -23,7 +24,8 @@ var restaurants = [
     type: ["Italian", "Pizza"],
     images: ["images/spin1.jpg", "images/spin2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 1
   },
   {
@@ -34,7 +36,8 @@ var restaurants = [
     type: ["Chicken", "Sandwiches"],
     images: ["images/lolas1.jpg", "images/lolas2.jpg"],
     cost: "$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 2
   },
   {
@@ -45,7 +48,8 @@ var restaurants = [
     type: ["Italian", "Bars"],
     images: ["images/trabocco1.jpg", "images/trabocco2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 3
   },
   {
@@ -56,7 +60,8 @@ var restaurants = [
     type: ["European", "Tea"],
     images: ["images/mamapapa1.jpg", "images/mamapapa2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 1]],
+    rating: 0,
     dataId: 4
   },
   {
@@ -67,7 +72,8 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/yume1.jpg", "images/yume2.jpg"],
     cost: "$$$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 5
   },
   {
@@ -78,7 +84,8 @@ var restaurants = [
     type: ["Thai", "Noodles"],
     images: ["images/chaithai1.jpg", "images/chaithai2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 6
   },
   {
@@ -89,7 +96,8 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/kamakura1.jpg", "images/kamakura2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 1]],
+    rating: 0,
     dataId: 7
   },
   {
@@ -100,7 +108,8 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/sushihouse1.jpg", "images/sushihouse2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 1]],
+    rating: 0,
     dataId: 8
   },
   {
@@ -111,7 +120,8 @@ var restaurants = [
     type: ["Chicken", "Korean"],
     images: ["images/chickenfire1.jpg", "images/chickenfire2.jpg"],
     cost: "$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 9
   },
   {
@@ -122,7 +132,8 @@ var restaurants = [
     type: ["Italian", "Mediterranean"],
     images: ["images/frascati1.jpg", "images/frascati2.jpg"],
     cost: "$$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 2]],
+    rating: 0,
     dataId: 10
   },
   {
@@ -133,7 +144,8 @@ var restaurants = [
     type: ["Italian", "Seafood"],
     images: ["images/sottomare1.jpg", "images/sottomare2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 1]],
+    rating: 0,
     dataId: 11
   },
   {
@@ -144,7 +156,8 @@ var restaurants = [
     type: ["Sushi", "Japanese"],
     images: ["images/kusakabe1.jpg", "images/kusakabe2.jpg"],
     cost: "$$$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 1]],
+    rating: 0,
     dataId: 12
   },
   {
@@ -155,12 +168,21 @@ var restaurants = [
     type: ["pizza"],
     images: ["images/bluebird1.jpg", "images/bluebird2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great."], ["Bob", "This place sucked"]],
+    reviews: [["Andrew", "This place was great.", 5], ["Bob", "This place sucked", 1]],
+    rating: 0,
     dataId: 13
   }
 ];
 
-
+function updateRating() {
+  for(var i = 0;i < restaurants.length;i++) {
+  var score = 0;
+    for(var x = 0;x < restaurants[i].reviews.length;x++) {
+      score = score + restaurants[i].reviews[x][2];
+    }
+  restaurants[i].rating = Math.round((score) / restaurants[i].reviews.length);
+  }
+}
 
 app.use(express.static("./"));
 
@@ -180,16 +202,20 @@ app.get("/search", function(req, res) {
 })
 
 app.post("/addReview", jsonParser, function(req,res) {
+  var match = [];
   for(var i = 0;i < restaurants.length;i++){
     if(req.body.dataId == restaurants[i].dataId) {
-      restaurants[i].reviews.unshift([req.body.name, req.body.review]);
-      res.json(restaurants[i].reviews)
+      restaurants[i].reviews.unshift([req.body.name, req.body.review, req.body.stars]);
+      match.push(restaurants[i]);
     }
   }
+  if(match.length > 0) {
+    res.json(match)
+  }
+  else {
+    res.sendStatus(404);
+  }
 })
-
-
-
 
 app.listen(8080, function() {
   console.log("Listening on port 8080")
