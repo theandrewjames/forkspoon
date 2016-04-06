@@ -8,7 +8,14 @@ var reviewerName = document.getElementsByClassName("reviewerName");
 var reviewerReview = document.getElementsByClassName("reviewerReview");
 var reviewsPanel = document.getElementsByClassName("reviews-panel");
 var stars = document.getElementsByClassName("stars");
-var costRating = document.getElementsByClassName("costRating");
+var costIcons = document.getElementsByClassName("costIcons");
+var newRestaurantForm = document.getElementById("newRestaurantForm");
+var addRestaurant = document.getElementById("add-restaurant");
+var newName = document.getElementById("newName");
+var newSite = document.getElementById("newSite");
+var newAddress = document.getElementById("newAddress");
+var newNumber = document.getElementById("newNumber");
+var costRating = document.getElementsByClassName("cost");
 
 function numberToStars(x) {
   var stars = "";
@@ -18,9 +25,18 @@ function numberToStars(x) {
   return stars;
 }
 
+function dollarSigns(x) {
+  var cost = "";
+  for(i = 0;i < x;i++) {
+    cost = cost + "$";
+  }
+  return cost;
+}
+
 
 searchForm.addEventListener("submit", function() {
   event.preventDefault();
+  newRestaurantForm.classList.add("hidden");
   var searchValue = search.value.toLowerCase();
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "/search?q=" + searchValue, true);
@@ -357,14 +373,44 @@ document.addEventListener("click", function() {
   }
   if(event.target.dataset.type == "costRating") {
     var location = event.target.dataset.loc;
-    for(var i = 0;i < costRating.length;i++) {
-      if(costRating[i].dataset.loc <= location) {
-        costRating[i].textContent = "$";
-        costRating[i].classList.add("cost");
+    for(var i = 0;i < costIcons.length;i++) {
+      if(costIcons[i].dataset.loc <= location) {
+        costIcons[i].textContent = "$";
+        costIcons[i].classList.add("cost");
       }
-      else if(costRating[i].dataset.loc >= location) {
-        costRating[i].textContent = "●";
-        costRating[i].classList.remove("cost");
+      else if(costIcons[i].dataset.loc >= location) {
+        costIcons[i].textContent = "●";
+        costIcons[i].classList.remove("cost");
+      }
+    }
+  }
+  if(event.target.dataset.type == "addRestaurant") {
+    newRestaurantForm.classList.toggle("hidden");
+  }
+  if(event.target.dataset.type == "submitRestaurant") {
+    event.preventDefault();
+    var newRestaurant = {
+      name: newName.value,
+      site: newSite.value,
+      address: newAddress.value,
+      phone: newNumber.value,
+      cost: dollarSigns(costRating.length)
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/addRestaurant", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(newRestaurant));
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        newName.value = "";
+        newSite.value = "";
+        newAddress.value = "";
+        newNumber.value = "";
+        for(var i = 0;i < costIcons.length;i++) {
+          costIcons[i].classList.remove("cost");
+          costIcons[i].textContent = "$";
+        }
+        newRestaurantForm.classList.add("hidden");
       }
     }
   }
