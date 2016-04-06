@@ -5,6 +5,7 @@
 
 .search-bar {
   padding-top: 20px;
+  width: 600px;
 }
 
 .navbar-brand {
@@ -82,4 +83,16 @@
 
 #results {
   min-height: 1200px;
+}
+
+.homeInput {
+  position: relative;
+  margin-top: 400px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#homeSearch {
+    border-radius: 4px;
 }
