@@ -13,25 +13,83 @@
             <img alt="logo" src="/images/forkspoonlogo1.png" id="logo">
           </a>
         </div>
-        <form id="searchForm">
-          <div class="row search-bar form-group">
-            <div class="col-md-6 col-xs-12">
-              <input type="search" id="search-box" class="form-control" placeholder="Search by restaurant type">
+        <div class="col-md-5">
+          <form id="searchForm">
+            <div class="search-bar form-group">
+              <div class="col-md-12 col-xs-12">
+                <input type="search" id="search-box" class="form-control" placeholder="Search by restaurant type">
+              </div>
             </div>
-            <button class="btn btn-primary" id="login-button" type="submit">Login</button>
-          </div>
-        </form>
+          </form>
+        </div>
+        <div class="col-md-3 navButtons">
+          <button class="btn btn-primary " data-type="login" id="login-button">Login</button>
+          <button class="btn btn-primary " data-type="addRestaurant" id="add-restaurant">Add Restaurant</button>
+        </div>
       </div>
     </nav>
     <div class="container" id="results">
-      <div class="row">
-        <div class="col-md-4 homeDiv">
+      <div class="col-md-9">
+        <div class="panel panel-default">
+          <div class="row">
+            <div class="panel-body col-md-12">
+              <div class="col-md-6 newInfo">
+                <form>
+                  <div class="form-group">
+                    <label for="newName">Restaurant Name</label>
+                    <input type="text" class="form-control" id="newName">
+                  </div>
+                  <div class="form-group">
+                    <label for="newSite">Website</label>
+                    <input type="text" class="form-control" id="newSite">
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6 newContactInfo">
+                <form>
+                  <div class="form-group">
+                    <label for="newAddress">Address</label>
+                    <input type="text" class="form-control" id="newAddress">
+                  </div>
+                  <div class="form-group">
+                    <label for="newNumber">Phone Number</label>
+                    <input type="text" class="form-control" id="newNumber">
+                  </div>
+                </form>
+              </div>
+                <div class="col-md-6 newCost">
+                  <form>
+                    <div class="form-group">
+                      <label for="costRating">Cost</label>
+                      <br>
+                      <span class="costRating" data-type="costRating" data-loc=0>$</span>
+                      <span class="costRating" data-type="costRating" data-loc=1>$</span>
+                      <span class="costRating" data-type="costRating" data-loc=2>$</span>
+                      <span class="costRating" data-type="costRating" data-loc=3>$</span>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-4 newSubmit">
+                  <form>
+                    <div class="form-group">
+                      <br>
+                      <button class="btn btn-primary" id="new-restaurant" type="submit">Submit New Restaurant</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-md-6 homeDiv">
           <img src="images/yojimbo2.jpg" class="img-responsive img-thumbnail">
         </div>
-        <div class="col-md-4 homeDiv">
+        <div class="col-md-5 homeDiv">
           <img src="images/yume2.jpg" class="img-responsive img-thumbnail">
         </div>
-        <div class="col-md-4 homeDiv">
+        <div class="col-md-5 homeDiv">
           <img src="images/chickenfire1.jpg" class="img-responsive img-thumbnail">
         </div>
       </div>
@@ -45,7 +103,7 @@
         <div class="col-md-4 homeDiv">
           <img src="images/yojimbo1.jpg" class="img-responsive img-thumbnail">
         </div>
-      </div>
+      </div> -->
     </div>
     <script src="default.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

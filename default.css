@@ -43,7 +43,27 @@
   font-size: 20px;
 }
 
-.homeDiv {
-  
+.stars {
+  color: red;
+}
 
+.reviewRating {
+  color: red;
+}
+
+.titleStars {
+  color: red;
+}
+
+.costRating {
+  font-size: 25px;
+  padding-right: 10px;
+}
+
+.navButtons {
+  padding-top: 20px;
+}
+
+#login-button {
+  margin-right: 20px;
 }

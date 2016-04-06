@@ -7,7 +7,8 @@ var searchForm = document.getElementById("searchForm");
 var reviewerName = document.getElementsByClassName("reviewerName");
 var reviewerReview = document.getElementsByClassName("reviewerReview");
 var reviewsPanel = document.getElementsByClassName("reviews-panel");
-var stars = document.getElementsByClassName("stars")
+var stars = document.getElementsByClassName("stars");
+var costRating = document.getElementsByClassName("costRating");
 
 function numberToStars(x) {
   var stars = "";
@@ -68,7 +69,8 @@ searchForm.addEventListener("submit", function() {
 
         var nameDiv = document.createElement("div");
         nameDiv.innerHTML = "<b>" + "<a class=restaurantTitle data-type=restaurantTitle data-id="
-        + results[i].dataId  + ">"+ results[i].name + "</a>" + "</b>" + " " + numberToStars(results[i].rating) +
+        + results[i].dataId  + ">"+ results[i].name + "</a>" + "</b>" + " " +
+        "<div class=titleStars>" + numberToStars(results[i].rating) + "</div>" +
         results[i].reviews.length + " " + "reviews" + "<br>" + "<a href=" +
         "http://" + results[i].website+">" + results[i].website + "</a>" + "<br>" + results[i].cost;
         nameDiv.className = "nameDiv col-md-6";
@@ -201,8 +203,11 @@ searchForm.addEventListener("submit", function() {
         resultsDiv.appendChild(resultRow);
         resultRow.appendChild(writeReviewPanel);
         for(var x = 0;x < results[i].reviews.length;x++) {
+          var div = document.createElement("div");
+          div.className = "col-md-8";
+
           var reviewsDiv = document.createElement("div");
-          reviewsDiv.className = "col-md-8 panel panel-default hidden reviews-panel";
+          reviewsDiv.className = "panel panel-default hidden reviews-panel";
           reviewsDiv.setAttribute("data-id", results[i].dataId);
 
           var reviewerName = document.createElement("div");
@@ -224,7 +229,8 @@ searchForm.addEventListener("submit", function() {
           reviewBody.appendChild(rating);
           reviewBody.appendChild(review);
           reviewsDiv.appendChild(reviewBody);
-          resultRow.appendChild(reviewsDiv);
+          div.appendChild(reviewsDiv);
+          resultRow.appendChild(div);
         }
       }
     }
@@ -346,6 +352,19 @@ document.addEventListener("click", function() {
       } else if (stars[i].dataset.id == id && stars[i].dataset.loc >= location) {
         stars[i].textContent = "☆";
         stars[i].classList.remove("fullStar");
+      }
+    }
+  }
+  if(event.target.dataset.type == "costRating") {
+    var location = event.target.dataset.loc;
+    for(var i = 0;i < costRating.length;i++) {
+      if(costRating[i].dataset.loc <= location) {
+        costRating[i].textContent = "$";
+        costRating[i].classList.add("cost");
+      }
+      else if(costRating[i].dataset.loc >= location) {
+        costRating[i].textContent = "●";
+        costRating[i].classList.remove("cost");
       }
     }
   }
