@@ -27,6 +27,12 @@
   margin-bottom: 0px;
 }
 
+.itemRow {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+}
+
 .nameDiv {
   padding-left: 50px;
 }
@@ -66,4 +72,14 @@
 
 #login-button {
   margin-right: 20px;
+}
+#home {
+  background-image: url("images/chickenfire1.jpg");
+  position: absolute;
+  background-repeat: repeat repeat;
+  min-height: 1200px;
+}
+
+#results {
+  min-height: 1200px;
 }
