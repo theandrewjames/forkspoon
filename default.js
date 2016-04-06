@@ -324,8 +324,12 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.responseText)
+
+        var div = document.createElement("div");
+        div.className = "col-md-8";
+
         var reviewsDiv = document.createElement("div");
-        reviewsDiv.className = "col-md-8 panel panel-default reviews-panel";
+        reviewsDiv.className = "panel panel-default reviews-panel";
         reviewsDiv.setAttribute("data-id", id);
 
         var reviewerName = document.createElement("div");
@@ -347,9 +351,10 @@ document.addEventListener("click", function() {
         ratingReview.appendChild(rating);
         ratingReview.appendChild(review)
         reviewsDiv.appendChild(ratingReview);
+        div.appendChild(reviewsDiv);
         for(var i = 0;i < itemRow.length;i++) {
           if(itemRow[i].dataset.id == id) {
-            itemRow[i].appendChild(reviewsDiv)
+            itemRow[i].appendChild(div)
           }
         }
       }
