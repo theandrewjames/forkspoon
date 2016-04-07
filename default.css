@@ -44,6 +44,7 @@
 
 #login-button {
   margin-left: 70px;
+  margin-right: 20px;
 }
 
 .stars {
@@ -72,9 +73,6 @@
   float: right;
 }
 
-#login-button {
-  margin-right: 20px;
-}
 #home {
   background-image: url("images/chickenfire1.jpg");
   position: absolute;
@@ -97,11 +95,3 @@
 #homeSearch {
     border-radius: 4px;
 }
-
-/*#username {
-  width: 40%;
-}
-
-#password {
-  width: 40%;
-}*/

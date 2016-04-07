@@ -16,6 +16,12 @@ var newSite = document.getElementById("newSite");
 var newAddress = document.getElementById("newAddress");
 var newNumber = document.getElementById("newNumber");
 var costRating = document.getElementsByClassName("cost");
+var usernameInput = document.getElementById("usernameInput");
+var passwordInput = document.getElementById("passwordInput");
+var passwordStatus = document.getElementById("passwordStatus");
+var loginModal = document.getElementById("loginModal");
+var loginButton = document.getElementById("login-button");
+var userGreeting = document.getElementById("user");
 
 function numberToStars(x) {
   var stars = "";
@@ -418,5 +424,44 @@ document.addEventListener("click", function() {
         newRestaurantForm.classList.add("hidden");
       }
     }
+  }
+  if(event.target.dataset.type == "signIn") {
+    var username = usernameInput.value;
+    var password = passwordInput.value;
+    var login = {
+      username: username,
+      password: password
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/login", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(login));
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        var results = JSON.parse(xhr.responseText);
+        usernameInput.value = "";
+        passwordInput.value = "";
+        passwordStatus.textContent = "";
+        $("#loginModal").modal("hide");
+        loginButton.textContent = "Logout";
+        loginButton.removeAttribute("data-toggle");
+        loginButton.setAttribute("data-type", "logout");
+        loginButton.removeAttribute("data-target", "#loginModal");
+        console.log(results);
+        userGreeting.textContent = "Welcome, " + results;
+      }
+      else if(xhr.status == 404) {
+        passwordStatus.textContent = "Incorrect password";
+      }
+    }
+
+  }
+  if(event.target.dataset.type == "logout") {
+    userGreeting.textContent = "";
+    loginButton.textContent = "Login";
+    loginButton.removeAttribute("data-type");
+    loginButton.setAttribute("data-toggle", "modal");
+    loginButton.setAttribute("data-target", "#loginModal");
+    $("#loginModal").modal("toggle");
   }
 })

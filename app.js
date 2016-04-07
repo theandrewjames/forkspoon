@@ -174,6 +174,13 @@ var restaurants = [
   }
 ];
 
+var users = [
+  {
+    username: "Popeyes",
+    password: "chicken"
+  }
+];
+
 function updateRating() {
   for(var i = 0;i < restaurants.length;i++) {
   var score = 0;
@@ -237,6 +244,20 @@ app.post("/addRestaurant", jsonParser, function(req, res) {
   res.sendStatus(200);
 })
 
+app.post("/login", jsonParser, function(req, res) {
+  var matched = [];
+  for(var i = 0;i < users.length;i++) {
+    if(req.body.username == users[i].username && req.body.password == users[i].password) {
+      matched.push(users[i].username);
+    }
+  }
+  if(matched.length > 0) {
+    res.send(matched);
+  }
+  else {
+    res.sendStatus(404);
+  }
+})
 
 var port = process.env.PORT || 1337;
 app.listen(port, function() {
