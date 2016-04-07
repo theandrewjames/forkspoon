@@ -253,12 +253,14 @@ searchForm.addEventListener("submit", function() {
           var usefulButton = document.createElement("button");
           usefulButton.className = "btn btn-primary";
           usefulButton.setAttribute("type", "button");
-          usefulButton.setAttribute("data-type", "useful")
+          usefulButton.setAttribute("data-type", "useful");
+          usefulButton.setAttribute("data-loc", x);
+          usefulButton.setAttribute("data-id", results[i].dataId)
           usefulButton.textContent = "Useful ";
 
           var badge = document.createElement("span");
           badge.className = "badge";
-          badge.textContent = 0;
+          badge.textContent = results[i].reviews[x][3];
 
           reviewsDiv.appendChild(reviewerName);
           reviewBody.appendChild(rating);
@@ -346,7 +348,7 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.responseText)
-
+        console.log(results)
         var div = document.createElement("div");
         div.className = "col-md-7";
 
@@ -375,12 +377,14 @@ document.addEventListener("click", function() {
         var usefulButton = document.createElement("button");
         usefulButton.className = "btn btn-primary";
         usefulButton.setAttribute("type", "button");
-        usefulButton.setAttribute("data-type", "useful")
+        usefulButton.setAttribute("data-type", "useful");
+        usefulButton.setAttribute("data-id", id);
+        usefulButton.setAttribute("data-loc", (results[0].reviews.length - 1))
         usefulButton.textContent = "Useful ";
 
         var badge = document.createElement("span");
         badge.className = "badge";
-        badge.textContent = 0;
+        badge.textContent = results[0].reviews[0][3];
 
         reviewsDiv.appendChild(reviewerName);
         ratingReview.appendChild(rating);
@@ -497,6 +501,29 @@ document.addEventListener("click", function() {
     $("#loginModal").modal("toggle");
   }
   if(event.target.dataset.type == "useful") {
-    
+    var target = event.target;
+    var id = event.target.dataset.id;
+    console.log(id)
+    var loc = event.target.dataset.loc;
+    var value = parseInt(event.target.children[0].textContent, 10);
+    // event.target.children[0].textContent = value + 1;
+    var review = {
+      id: id,
+      location: loc,
+      value: value
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/useful", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(review));
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        var results = JSON.parse(xhr.responseText);
+        target.children[0].textContent = results;
+      }
+      else if(xhr.status = 404) {
+        console.log("An error occured.")
+      }
+    }
   }
 })
