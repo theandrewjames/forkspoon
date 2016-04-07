@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var jsonParser = require("body-parser").json();
+var cookieParser = require("cookie-parser");
 
 
 var restaurants = [
@@ -244,6 +245,7 @@ app.post("/addRestaurant", jsonParser, function(req, res) {
   res.sendStatus(200);
 })
 
+
 app.post("/login", jsonParser, function(req, res) {
   var matched = [];
   for(var i = 0;i < users.length;i++) {
@@ -252,6 +254,7 @@ app.post("/login", jsonParser, function(req, res) {
     }
   }
   if(matched.length > 0) {
+    res.cookie("loggedIn", "true");
     res.send(matched);
   }
   else {

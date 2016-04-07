@@ -294,6 +294,7 @@ searchForm.addEventListener("submit", function() {
         var titleId = this.dataset.id;
         for(var i = 0;i < itemRow.length;i++) {
           var rowId = itemRow[i].dataset.id;
+          itemRow[i].style.marginTop = "20px";
           if(rowId < titleId || rowId > titleId) {
             itemRow[i].classList.add("hidden");
           }
@@ -483,7 +484,6 @@ document.addEventListener("click", function() {
         loginButton.removeAttribute("data-toggle");
         loginButton.setAttribute("data-type", "logout");
         loginButton.removeAttribute("data-target", "#loginModal");
-        console.log(results);
         userGreeting.textContent = "Welcome, " + results;
       }
       else if(xhr.status == 404) {
@@ -503,10 +503,8 @@ document.addEventListener("click", function() {
   if(event.target.dataset.type == "useful") {
     var target = event.target;
     var id = event.target.dataset.id;
-    console.log(id)
     var loc = event.target.dataset.loc;
     var value = parseInt(event.target.children[0].textContent, 10);
-    // event.target.children[0].textContent = value + 1;
     var review = {
       id: id,
       location: loc,
