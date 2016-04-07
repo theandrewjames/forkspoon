@@ -69,6 +69,7 @@
 
 .navButtons {
   padding-top: 20px;
+  float: right;
 }
 
 #login-button {
@@ -96,3 +97,11 @@
 #homeSearch {
     border-radius: 4px;
 }
+
+/*#username {
+  width: 40%;
+}
+
+#password {
+  width: 40%;
+}*/
