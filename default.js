@@ -226,7 +226,7 @@ searchForm.addEventListener("submit", function() {
         resultRow.appendChild(writeReviewPanel);
         for(var x = 0;x < results[i].reviews.length;x++) {
           var div = document.createElement("div");
-          div.className = "col-md-8";
+          div.className = "col-md-7";
 
           var reviewsDiv = document.createElement("div");
           reviewsDiv.className = "panel panel-default hidden reviews-panel";
@@ -247,10 +247,26 @@ searchForm.addEventListener("submit", function() {
           var review = document.createElement("div");
           review.textContent = results[i].reviews[x][1];
 
+          var panelFooter = document.createElement("div");
+          panelFooter.className = "panel-footer";
+
+          var usefulButton = document.createElement("button");
+          usefulButton.className = "btn btn-primary";
+          usefulButton.setAttribute("type", "button");
+          usefulButton.setAttribute("data-type", "useful")
+          usefulButton.textContent = "Useful ";
+
+          var badge = document.createElement("span");
+          badge.className = "badge";
+          badge.textContent = 0;
+
           reviewsDiv.appendChild(reviewerName);
           reviewBody.appendChild(rating);
+          usefulButton.appendChild(badge);
+          panelFooter.appendChild(usefulButton);
           reviewBody.appendChild(review);
           reviewsDiv.appendChild(reviewBody);
+          reviewsDiv.appendChild(panelFooter);
           div.appendChild(reviewsDiv);
           resultRow.appendChild(div);
         }
@@ -332,7 +348,7 @@ document.addEventListener("click", function() {
         var results = JSON.parse(xhr.responseText)
 
         var div = document.createElement("div");
-        div.className = "col-md-8";
+        div.className = "col-md-7";
 
         var reviewsDiv = document.createElement("div");
         reviewsDiv.className = "panel panel-default reviews-panel";
@@ -353,10 +369,26 @@ document.addEventListener("click", function() {
         var review = document.createElement("div");
         review.textContent = results[0].reviews[0][1];
 
+        var panelFooter = document.createElement("div");
+        panelFooter.className = "panel-footer";
+
+        var usefulButton = document.createElement("button");
+        usefulButton.className = "btn btn-primary";
+        usefulButton.setAttribute("type", "button");
+        usefulButton.setAttribute("data-type", "useful")
+        usefulButton.textContent = "Useful ";
+
+        var badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = 0;
+
         reviewsDiv.appendChild(reviewerName);
         ratingReview.appendChild(rating);
-        ratingReview.appendChild(review)
+        ratingReview.appendChild(review);
         reviewsDiv.appendChild(ratingReview);
+        usefulButton.appendChild(badge);
+        panelFooter.appendChild(usefulButton);
+        reviewsDiv.appendChild(panelFooter)
         div.appendChild(reviewsDiv);
         for(var i = 0;i < itemRow.length;i++) {
           if(itemRow[i].dataset.id == id) {
@@ -463,5 +495,8 @@ document.addEventListener("click", function() {
     loginButton.setAttribute("data-toggle", "modal");
     loginButton.setAttribute("data-target", "#loginModal");
     $("#loginModal").modal("toggle");
+  }
+  if(event.target.dataset.type == "useful") {
+    
   }
 })
