@@ -333,6 +333,11 @@ document.addEventListener("click", function() {
       }
     }
     var matched = [];
+    for(var i = 0;i < reviewerName.length;i++) {
+      if(reviewerName[i].dataset.id == id) {
+        reviewerName[i].value = "";
+      }
+    }
     for(var i = 0;i < stars.length;i++) {
       if(stars[i].dataset.id == event.target.dataset.id && stars[i].classList.contains("fullStar")) {
         matched.push(stars[i]);
@@ -351,6 +356,16 @@ document.addEventListener("click", function() {
     xhr.send(JSON.stringify(review));
     xhr.onload = function() {
       if(xhr.status == 200) {
+        for(var i = 0;i < reviewerReview.length;i++) {
+          if(reviewerReview[i].dataset.id == id) {
+            reviewerReview[i].value = "";
+          }
+        }
+        for(var i = 0;i < stars.length;i++) {
+          if(stars[i].dataset.id == id) {
+            stars[i].textContent = "☆";
+          }
+        }
         var results = JSON.parse(xhr.responseText)
         var div = document.createElement("div");
         div.className = "col-md-7";
