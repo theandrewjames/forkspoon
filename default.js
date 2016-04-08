@@ -21,7 +21,7 @@ var passwordInput = document.getElementById("passwordInput");
 var passwordStatus = document.getElementById("passwordStatus");
 var loginModal = document.getElementById("loginModal");
 var loginButton = document.getElementById("login-button");
-var userGreeting = document.getElementById("user");
+var profileButton = document.getElementById("myProfile");
 
 function numberToStars(x) {
   var stars = "";
@@ -113,11 +113,12 @@ searchForm.addEventListener("submit", function() {
         var phoneDiv = document.createElement("div");
         phoneDiv.textContent = results[i].phoneNumber;
 
-
+        var reviewPanelDiv = document.createElement("div");
+        reviewPanelDiv.className = "col-md-7";
 
         var writeReviewPanel = document.createElement("div");
         writeReviewPanel.setAttribute("data-id", results[i].dataId);
-        writeReviewPanel.className = "col-md-8 panel panel-default panel-body hidden writeReview";
+        writeReviewPanel.className = "panel panel-default panel-body hidden writeReview";
 
         var writeReviewForm = document.createElement("form");
 
@@ -204,7 +205,8 @@ searchForm.addEventListener("submit", function() {
         ratingRow.appendChild(submitReviewButton)
         ratingFormGroup.appendChild(ratingRow);
         writeReviewForm.appendChild(ratingFormGroup);
-        writeReviewPanel.appendChild(writeReviewForm)
+        writeReviewPanel.appendChild(writeReviewForm);
+        reviewPanelDiv.appendChild(writeReviewPanel);
         columnDiv.appendChild(image);
         //Code to switch from innerhtml
         // mainInfo.appendChild(restaurantTitle);
@@ -223,7 +225,7 @@ searchForm.addEventListener("submit", function() {
         resultRow.appendChild(panel);
         resultRow.appendChild(hr);
         resultsDiv.appendChild(resultRow);
-        resultRow.appendChild(writeReviewPanel);
+        resultRow.appendChild(reviewPanelDiv);
         for(var x = 0;x < results[i].reviews.length;x++) {
           var div = document.createElement("div");
           div.className = "col-md-7";
@@ -484,7 +486,7 @@ document.addEventListener("click", function() {
         loginButton.removeAttribute("data-toggle");
         loginButton.setAttribute("data-type", "logout");
         loginButton.removeAttribute("data-target", "#loginModal");
-        userGreeting.textContent = "Welcome, " + results;
+        profileButton.classList.remove("hidden");
       }
       else if(xhr.status == 404) {
         passwordStatus.textContent = "Incorrect password";
@@ -492,8 +494,11 @@ document.addEventListener("click", function() {
     }
 
   }
+  if(event.target.dataset.type == "profileButton") {
+
+  }
   if(event.target.dataset.type == "logout") {
-    userGreeting.textContent = "";
+    profileButton.classList.add("hidden");
     loginButton.textContent = "Login";
     loginButton.removeAttribute("data-type");
     loginButton.setAttribute("data-toggle", "modal");
