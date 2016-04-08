@@ -296,7 +296,6 @@ app.post("/useful", jsonParser, function(req, res) {
 })
 
 app.post("/funny", jsonParser, function(req, res) {
-  console.log(req.cookies)
   var value = [];
   for(var i = 0;i < restaurants.length;i++) {
     if(req.body.id == restaurants[i].dataId) {

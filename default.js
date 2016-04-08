@@ -200,7 +200,7 @@ searchForm.addEventListener("submit", function() {
         var submitReviewButton = document.createElement("button");
         submitReviewButton.setAttribute("type", "button");
         submitReviewButton.textContent = "Submit Review" ;
-        submitReviewButton.className = "btn btn-primary submitReview col-md-4";
+        submitReviewButton.className = "btn btn-success submitReview col-md-4";
         submitReviewButton.setAttribute("data-type", "addReview");
         submitReviewButton.setAttribute("data-id", results[i].dataId)
 
@@ -260,7 +260,7 @@ searchForm.addEventListener("submit", function() {
           panelFooter.className = "panel-footer";
 
           var usefulButton = document.createElement("button");
-          usefulButton.className = "btn btn-primary";
+          usefulButton.className = "btn btn-success";
           usefulButton.setAttribute("type", "button");
           usefulButton.setAttribute("data-type", "useful");
           usefulButton.setAttribute("data-loc", x);
@@ -272,7 +272,7 @@ searchForm.addEventListener("submit", function() {
           badge.textContent = results[i].reviews[x][3];
 
           var funnyButton = document.createElement("button");
-          funnyButton.className = "btn btn-primary funnyButton";
+          funnyButton.className = "btn btn-success funnyButton";
           funnyButton.setAttribute("type", "button");
           funnyButton.setAttribute("data-type", "funny");
           funnyButton.setAttribute("data-loc", x);
@@ -313,6 +313,7 @@ searchForm.addEventListener("submit", function() {
     }
     for(var i = 0;i < restaurantTitle.length;i++) {
       restaurantTitle[i].addEventListener("click", function() {
+        newRestaurantForm.classList.add("hidden");
         var reviewsDiv = document.getElementsByClassName('reviews-panel')
         var titleId = this.dataset.id;
         for(var i = 0;i < itemRow.length;i++) {
@@ -413,7 +414,7 @@ document.addEventListener("click", function() {
         panelFooter.className = "panel-footer";
 
         var usefulButton = document.createElement("button");
-        usefulButton.className = "btn btn-primary";
+        usefulButton.className = "btn btn-success";
         usefulButton.setAttribute("type", "button");
         usefulButton.setAttribute("data-type", "useful");
         usefulButton.setAttribute("data-id", id);
@@ -425,7 +426,7 @@ document.addEventListener("click", function() {
         badge.textContent = results[0].reviews[0][3];
 
         var funnyButton = document.createElement("button");
-        funnyButton.className = "btn btn-primary funnyButton";
+        funnyButton.className = "btn btn-success funnyButton";
         funnyButton.setAttribute("type", "button");
         funnyButton.setAttribute("data-type", "funny");
         funnyButton.setAttribute("data-loc", (results[0].reviews.length - 1));
@@ -541,10 +542,12 @@ document.addEventListener("click", function() {
         profileCity.textContent = results[0].city;
         aboutMe.textContent = results[0].aboutMe;
         profileImage.setAttribute("src", results[0].image);
-        var homeDiv = document.createElement("div");
-        homeDiv.id = "home";
-        homeDiv.className = "col-md-12";
-        resultsDiv.appendChild(homeDiv);
+        if(resultsDiv.hasChildNodes() == false) {
+          var homeDiv = document.createElement("div");
+          homeDiv.id = "home";
+          homeDiv.className = "col-md-12";
+          resultsDiv.appendChild(homeDiv);
+        }
       }
       else if(xhr.status == 404) {
         passwordStatus.textContent = "Incorrect password";
@@ -561,10 +564,12 @@ document.addEventListener("click", function() {
     loginButton.setAttribute("data-toggle", "modal");
     loginButton.setAttribute("data-target", "#loginModal");
     $("#loginModal").modal("toggle");
-    var homeDiv = document.createElement("div");
-    homeDiv.id = "home";
-    homeDiv.className = "col-md-12";
-    resultsDiv.appendChild(homeDiv);
+    if(resultsDiv.hasChildNodes() == false) {
+      var homeDiv = document.createElement("div");
+      homeDiv.id = "home";
+      homeDiv.className = "col-md-12";
+      resultsDiv.appendChild(homeDiv);
+    }
   }
   if(event.target.dataset.type == "useful") {
     var target = event.target;
