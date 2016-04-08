@@ -265,10 +265,24 @@ searchForm.addEventListener("submit", function() {
           badge.className = "badge";
           badge.textContent = results[i].reviews[x][3];
 
+          var funnyButton = document.createElement("button");
+          funnyButton.className = "btn btn-primary funnyButton";
+          funnyButton.setAttribute("type", "button");
+          funnyButton.setAttribute("data-type", "funny");
+          funnyButton.setAttribute("data-loc", x);
+          funnyButton.setAttribute("data-id", results[i].dataId);
+          funnyButton.textContent = "Funny ";
+
+          var funnyBadge = document.createElement("span");
+          funnyBadge.className = "badge";
+          funnyBadge.textContent = results[i].reviews[x][4];
+
           reviewsDiv.appendChild(reviewerName);
           reviewBody.appendChild(rating);
           usefulButton.appendChild(badge);
+          funnyButton.appendChild(funnyBadge);
           panelFooter.appendChild(usefulButton);
+          panelFooter.appendChild(funnyButton)
           reviewBody.appendChild(review);
           reviewsDiv.appendChild(reviewBody);
           reviewsDiv.appendChild(panelFooter);
@@ -404,12 +418,26 @@ document.addEventListener("click", function() {
         badge.className = "badge";
         badge.textContent = results[0].reviews[0][3];
 
+        var funnyButton = document.createElement("button");
+        funnyButton.className = "btn btn-primary funnyButton";
+        funnyButton.setAttribute("type", "button");
+        funnyButton.setAttribute("data-type", "funny");
+        funnyButton.setAttribute("data-loc", (results[0].reviews.length - 1));
+        funnyButton.setAttribute("data-id", id);
+        funnyButton.textContent = "Funny ";
+
+        var funnyBadge = document.createElement("span");
+        funnyBadge.className = "badge";
+        funnyBadge.textContent = results[0].reviews[0][4];
+
         reviewsDiv.appendChild(reviewerName);
         ratingReview.appendChild(rating);
         ratingReview.appendChild(review);
         reviewsDiv.appendChild(ratingReview);
         usefulButton.appendChild(badge);
+        funnyButton.appendChild(funnyBadge);
         panelFooter.appendChild(usefulButton);
+        panelFooter.appendChild(funnyButton)
         reviewsDiv.appendChild(panelFooter)
         div.appendChild(reviewsDiv);
         for(var i = 0;i < itemRow.length;i++) {
@@ -539,6 +567,30 @@ document.addEventListener("click", function() {
       }
       else if(xhr.status = 404) {
         console.log("An error occured.")
+      }
+    }
+  }
+  if(event.target.dataset.type == "funny") {
+    var target = event.target;
+    var id = event.target.dataset.id;
+    var loc = event.target.dataset.loc;
+    var value = parseInt(event.target.children[0].textContent, 10);
+    var review = {
+      id: id,
+      location: loc,
+      value: value
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/funny", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(review));
+    xhr.onload = function() {
+      if(xhr.status == 200) {
+        var results = JSON.parse(xhr.responseText);
+        target.children[0].textContent = results;
+      }
+      else if(xhr.status == 404) {
+        console.log("An error occured.");
       }
     }
   }

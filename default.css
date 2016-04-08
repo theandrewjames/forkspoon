@@ -79,6 +79,8 @@
   position: absolute;
   min-height: 1200px;
   background-position: top left;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 
 #results {
@@ -97,4 +99,12 @@
   height: 100px;
   width: 120px;
   float: left;
+}
+
+#newRestaurantForm {
+  padding-top: 20px;
+}
+
+.funnyButton {
+  margin-left: 10px;
 }

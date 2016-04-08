@@ -8,132 +8,132 @@ var restaurants = [
   {
     name: "Yojimbo",
     website: "yojimbosushi.com",
-    phoneNumber: "(510) 523-4120",
+    phoneNumber: "5105234120",
     address: "1221 Park St, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/yojimbo1.jpg", "images/yojimbo2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 0
   },
   {
     name: "SPIN! Neopolitan Pizza",
     website: "spinpizza.com",
-    phoneNumber: "(510) 769-7492",
+    phoneNumber: "5107697492",
     address: "2670 5th St, Alameda, CA, 94501",
     type: ["Italian", "Pizza", "Food"],
     images: ["images/spin1.jpg", "images/spin2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 1
   },
   {
     name: "Lola's Chicken Shack",
     website: "lolaschickenshack.com",
-    phoneNumber: "(510) 521-4488",
+    phoneNumber: "5105214488",
     address: "1417 Park St, Alameda, CA, 94501",
     type: ["Chicken", "Sandwiches", "Food"],
     images: ["images/lolas1.jpg", "images/lolas2.jpg"],
     cost: "$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 2
   },
   {
     name: "Trabocco Kitchen and Cocktails",
     website: "trabocco.com",
-    phoneNumber: "(510) 521-1152",
+    phoneNumber: "5105211152",
     address: "2213 S Shore Ctr, Alameda, CA, 94501",
     type: ["Italian", "Bars", "Food"],
     images: ["images/trabocco1.jpg", "images/trabocco2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 3
   },
   {
     name: "Mama Papa Lithuania Restaurant",
     website: "mamapapalithuania.com",
-    phoneNumber: "(510) 522-4100",
+    phoneNumber: "5105224100",
     address: "1241 Park St, Alameda, CA, 94501",
     type: ["European", "Tea", "Food"],
     images: ["images/mamapapa1.jpg", "images/mamapapa2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 1, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 1, 0, 0]],
     rating: 0,
     dataId: 4
   },
   {
     name: "Yume Sushi",
     website: "",
-    phoneNumber: "(510) 865-7141",
+    phoneNumber: "5108657141",
     address: "1428 Park St, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/yume1.jpg", "images/yume2.jpg"],
     cost: "$$$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 5
   },
   {
     name: "Chai Thai Noodles",
     website: "chaithainoodle.com",
-    phoneNumber: "(510) 832-2500",
+    phoneNumber: "5108322500",
     address: "545 International Blvd Ste B, Oakland, CA, 94606",
     type: ["Thai", "Noodles", "Food"],
     images: ["images/chaithai1.jpg", "images/chaithai2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 6
   },
   {
     name: "Kamakura Japanese Restaurant",
     website: "kamakurarestaurant.com",
-    phoneNumber: "(510) 521-9121",
+    phoneNumber: "5105219121",
     address: "2549 Santa Clara Ave, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/kamakura1.jpg", "images/kamakura2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 1, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 1, 0, 0]],
     rating: 0,
     dataId: 7
   },
   {
     name: "Sushi House",
     website: "e-sushihouse.com",
-    phoneNumber: "(510) 865-0999",
+    phoneNumber: "5108650999",
     address: "2375 Shoreline Dr, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/sushihouse1.jpg", "images/sushihouse2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 1, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 1, 0, 0]],
     rating: 0,
     dataId: 8
   },
   {
     name: "Chicken On Fire",
     website: "",
-    phoneNumber: "(510) 786-9161",
+    phoneNumber: "5107869161",
     address: "2619 Oliver Dr, Hayward, CA, 94545",
     type: ["Chicken", "Korean", "Food"],
     images: ["images/chickenfire1.jpg", "images/chickenfire2.jpg"],
     cost: "$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 9
   },
   {
     name: "Frascati",
     website: "frascatisf.com",
-    phoneNumber: "(415) 928-1406",
+    phoneNumber: "4159281406",
     address: "1901 Hyde St, San Francisco, CA, 94109",
     type: ["Italian", "Mediterranean", "Food"],
     images: ["images/frascati1.jpg", "images/frascati2.jpg"],
     cost: "$$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 2, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 2, 0, 0]],
     rating: 0,
     dataId: 10
   },
@@ -145,26 +145,26 @@ var restaurants = [
     type: ["Italian", "Seafood", "Food"],
     images: ["images/sottomare1.jpg", "images/sottomare2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 1, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 1, 0, 0]],
     rating: 0,
     dataId: 11
   },
   {
     name: "Kusakabe",
     website: "kusakabe-sf.com",
-    phoneNumber: "(415) 757-0155",
+    phoneNumber: "4157570155",
     address: "584 Washington St, San Francisco, CA, 94111",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/kusakabe1.jpg", "images/kusakabe2.jpg"],
     cost: "$$$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 1, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 1, 0, 0]],
     rating: 0,
     dataId: 12
   },
   {
     name: "Bluebird Pizzeria",
     website: "",
-    phoneNumber: "(510) 562-1199",
+    phoneNumber: "5105621199",
     address: "496 E 14th St, San Leandro, CA, 94577",
     type: ["pizza", "Food"],
     images: ["images/bluebird1.jpg", "images/bluebird2.jpg"],
@@ -215,7 +215,7 @@ app.post("/addReview", jsonParser, function(req,res) {
   var match = [];
   for(var i = 0;i < restaurants.length;i++){
     if(req.body.dataId == restaurants[i].dataId) {
-      restaurants[i].reviews.unshift([req.body.name, req.body.review, req.body.stars, 0]);
+      restaurants[i].reviews.unshift([req.body.name, req.body.review, req.body.stars, 0, 0]);
       updateRating();
       match.push(restaurants[i]);
     }
@@ -273,6 +273,23 @@ app.post("/useful", jsonParser, function(req, res) {
   }
   if(value.length > 0) {
     res.send(value);
+  }
+  else {
+    res.sendStatus(404);
+  }
+})
+
+app.post("/funny", jsonParser, function(req, res) {
+  var value = [];
+  for(var i = 0;i < restaurants.length;i++) {
+    if(req.body.id == restaurants[i].dataId) {
+      var newValue = req.body.value + 1;
+      restaurants[i].reviews[req.body.location][4] = newValue;
+      value.push(restaurants[i].reviews[req.body.location][4])
+    }
+  }
+  if(value.length > 0) {
+    res.send(value)
   }
   else {
     res.sendStatus(404);
