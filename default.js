@@ -22,6 +22,11 @@ var passwordStatus = document.getElementById("passwordStatus");
 var loginModal = document.getElementById("loginModal");
 var loginButton = document.getElementById("login-button");
 var profileButton = document.getElementById("myProfile");
+var profileName = document.getElementById("profileName");
+var profileCity = document.getElementById("profileCity");
+var aboutMe = document.getElementById("aboutMe");
+var profileImage = document.getElementById("profileImage");
+var profileContainer = document.getElementById("profile");
 
 function numberToStars(x) {
   var stars = "";
@@ -42,6 +47,7 @@ function dollarSigns(x) {
 
 searchForm.addEventListener("submit", function() {
   event.preventDefault();
+  profileContainer.classList.add("hidden");
   newRestaurantForm.classList.add("hidden");
   var searchValue = search.value.toLowerCase();
   var xhr = new XMLHttpRequest();
@@ -479,6 +485,7 @@ document.addEventListener("click", function() {
   }
   if(event.target.dataset.type == "addRestaurant") {
     newRestaurantForm.classList.toggle("hidden");
+    profileContainer.classList.add("hidden");
   }
   if(event.target.dataset.type == "submitRestaurant") {
     event.preventDefault();
@@ -521,6 +528,7 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.responseText);
+        console.log(results[0].name)
         usernameInput.value = "";
         passwordInput.value = "";
         passwordStatus.textContent = "";
@@ -530,6 +538,14 @@ document.addEventListener("click", function() {
         loginButton.setAttribute("data-type", "logout");
         loginButton.removeAttribute("data-target", "#loginModal");
         profileButton.classList.remove("hidden");
+        profileName.textContent = results[0].firstName + " " + results[0].lastName;
+        profileCity.textContent = results[0].city;
+        aboutMe.textContent = results[0].aboutMe;
+        profileImage.setAttribute("src", results[0].image);
+        profileContainer.classList.remove("hidden");
+        while(resultsDiv.hasChildNodes()) {
+          resultsDiv.removeChild(resultsDiv.lastChild)
+        };
       }
       else if(xhr.status == 404) {
         passwordStatus.textContent = "Incorrect password";
@@ -539,12 +555,17 @@ document.addEventListener("click", function() {
   }
 
   if(event.target.dataset.type == "logout") {
+    profileContainer.classList.add("hidden");
     profileButton.classList.add("hidden");
     loginButton.textContent = "Login";
     loginButton.removeAttribute("data-type");
     loginButton.setAttribute("data-toggle", "modal");
     loginButton.setAttribute("data-target", "#loginModal");
     $("#loginModal").modal("toggle");
+    var homeDiv = document.createElement("div");
+    homeDiv.id = "home";
+    homeDiv.className = "col-md-12";
+    resultsDiv.appendChild(homeDiv)
   }
   if(event.target.dataset.type == "useful") {
     var target = event.target;
@@ -593,5 +614,8 @@ document.addEventListener("click", function() {
         console.log("An error occured.");
       }
     }
+  }
+  if(event.target.dataset.type == "profileButton") {
+    profileContainer.className.remove("hidden");
   }
 })

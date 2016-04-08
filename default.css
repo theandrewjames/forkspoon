@@ -79,6 +79,7 @@
   position: absolute;
   min-height: 1200px;
   background-position: top left;
+  background-attachment: fixed;
   margin-left: -20px;
   margin-right: -20px;
 }
@@ -107,4 +108,12 @@
 
 .funnyButton {
   margin-left: 10px;
+}
+
+#profile {
+  margin-top: 20px;
+}
+
+#profileName {
+  font-weight: bold;
 }

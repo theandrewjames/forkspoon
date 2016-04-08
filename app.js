@@ -169,7 +169,7 @@ var restaurants = [
     type: ["pizza", "Food"],
     images: ["images/bluebird1.jpg", "images/bluebird2.jpg"],
     cost: "$$",
-    reviews: [["Andrew", "This place was great.", 5, 0], ["Bob", "This place sucked", 1, 0]],
+    reviews: [["Andrew", "This place was great.", 5, 0, 0], ["Bob", "This place sucked", 1, 0, 0]],
     rating: 0,
     dataId: 13
   }
@@ -177,8 +177,24 @@ var restaurants = [
 
 var users = [
   {
-    username: "Popeyes",
-    password: "chicken"
+    username: "Tom",
+    password: "burgers",
+    firstName: "Tom",
+    lastName: "Burgers",
+    city: "Newport Beach",
+    image: "images/reviewer1.jpeg",
+    aboutMe: "Just travelling around the world eating everything. On a mission to gain 200lbs.",
+    reviews: []
+  },
+  {
+    username: "Lisa",
+    password: "burgers",
+    firstName: "Lisa",
+    lastName: "Burgers",
+    city: "Newport Beach",
+    image: "images/lisaburgers.jpg",
+    aboutMe: "I'm travelling around the world with my husband eating hamburgers at every stop. Theres not a burger I haven't tried.",
+    reviews: []
   }
 ];
 
@@ -250,7 +266,7 @@ app.post("/login", jsonParser, function(req, res) {
   var matched = [];
   for(var i = 0;i < users.length;i++) {
     if(req.body.username == users[i].username && req.body.password == users[i].password) {
-      matched.push(users[i].username);
+      matched.push(users[i]);
     }
   }
   if(matched.length > 0) {
@@ -280,6 +296,7 @@ app.post("/useful", jsonParser, function(req, res) {
 })
 
 app.post("/funny", jsonParser, function(req, res) {
+  console.log(req.cookies)
   var value = [];
   for(var i = 0;i < restaurants.length;i++) {
     if(req.body.id == restaurants[i].dataId) {
