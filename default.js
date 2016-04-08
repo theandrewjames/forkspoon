@@ -49,6 +49,7 @@ searchForm.addEventListener("submit", function() {
   xhr.send();
   xhr.onload = function() {
     if(xhr.status == 200) {
+      search.value = "";
       while(resultsDiv.hasChildNodes()) {
         resultsDiv.removeChild(resultsDiv.lastChild)
       };
@@ -351,7 +352,6 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.responseText)
-        console.log(results)
         var div = document.createElement("div");
         div.className = "col-md-7";
 
@@ -494,9 +494,7 @@ document.addEventListener("click", function() {
     }
 
   }
-  if(event.target.dataset.type == "profileButton") {
 
-  }
   if(event.target.dataset.type == "logout") {
     profileButton.classList.add("hidden");
     loginButton.textContent = "Login";
