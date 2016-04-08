@@ -528,7 +528,6 @@ document.addEventListener("click", function() {
     xhr.onload = function() {
       if(xhr.status == 200) {
         var results = JSON.parse(xhr.responseText);
-        console.log(results[0].name)
         usernameInput.value = "";
         passwordInput.value = "";
         passwordStatus.textContent = "";
@@ -542,10 +541,10 @@ document.addEventListener("click", function() {
         profileCity.textContent = results[0].city;
         aboutMe.textContent = results[0].aboutMe;
         profileImage.setAttribute("src", results[0].image);
-        profileContainer.classList.remove("hidden");
-        while(resultsDiv.hasChildNodes()) {
-          resultsDiv.removeChild(resultsDiv.lastChild)
-        };
+        var homeDiv = document.createElement("div");
+        homeDiv.id = "home";
+        homeDiv.className = "col-md-12";
+        resultsDiv.appendChild(homeDiv);
       }
       else if(xhr.status == 404) {
         passwordStatus.textContent = "Incorrect password";
@@ -565,7 +564,7 @@ document.addEventListener("click", function() {
     var homeDiv = document.createElement("div");
     homeDiv.id = "home";
     homeDiv.className = "col-md-12";
-    resultsDiv.appendChild(homeDiv)
+    resultsDiv.appendChild(homeDiv);
   }
   if(event.target.dataset.type == "useful") {
     var target = event.target;
@@ -616,6 +615,9 @@ document.addEventListener("click", function() {
     }
   }
   if(event.target.dataset.type == "profileButton") {
-    profileContainer.className.remove("hidden");
+    while(resultsDiv.hasChildNodes()) {
+      resultsDiv.removeChild(resultsDiv.lastChild);
+    };
+    profileContainer.classList.remove("hidden");
   }
 })
