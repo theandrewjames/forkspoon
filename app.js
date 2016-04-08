@@ -8,7 +8,7 @@ var restaurants = [
   {
     name: "Yojimbo",
     website: "yojimbosushi.com",
-    phoneNumber: "5105234120",
+    phoneNumber: "(510) 523-4120",
     address: "1221 Park St, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/yojimbo1.jpg", "images/yojimbo2.jpg"],
@@ -20,7 +20,7 @@ var restaurants = [
   {
     name: "SPIN! Neopolitan Pizza",
     website: "spinpizza.com",
-    phoneNumber: "5107697492",
+    phoneNumber: "(510) 769-7492",
     address: "2670 5th St, Alameda, CA, 94501",
     type: ["Italian", "Pizza", "Food"],
     images: ["images/spin1.jpg", "images/spin2.jpg"],
@@ -32,7 +32,7 @@ var restaurants = [
   {
     name: "Lola's Chicken Shack",
     website: "lolaschickenshack.com",
-    phoneNumber: "5105214488",
+    phoneNumber: "(510) 521-4488",
     address: "1417 Park St, Alameda, CA, 94501",
     type: ["Chicken", "Sandwiches", "Food"],
     images: ["images/lolas1.jpg", "images/lolas2.jpg"],
@@ -44,7 +44,7 @@ var restaurants = [
   {
     name: "Trabocco Kitchen and Cocktails",
     website: "trabocco.com",
-    phoneNumber: "5105211152",
+    phoneNumber: "(510) 521-1152",
     address: "2213 S Shore Ctr, Alameda, CA, 94501",
     type: ["Italian", "Bars", "Food"],
     images: ["images/trabocco1.jpg", "images/trabocco2.jpg"],
@@ -56,7 +56,7 @@ var restaurants = [
   {
     name: "Mama Papa Lithuania Restaurant",
     website: "mamapapalithuania.com",
-    phoneNumber: "5105224100",
+    phoneNumber: "(510) 522-4100",
     address: "1241 Park St, Alameda, CA, 94501",
     type: ["European", "Tea", "Food"],
     images: ["images/mamapapa1.jpg", "images/mamapapa2.jpg"],
@@ -68,7 +68,7 @@ var restaurants = [
   {
     name: "Yume Sushi",
     website: "",
-    phoneNumber: "5108657141",
+    phoneNumber: "(510) 865-7141",
     address: "1428 Park St, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/yume1.jpg", "images/yume2.jpg"],
@@ -80,7 +80,7 @@ var restaurants = [
   {
     name: "Chai Thai Noodles",
     website: "chaithainoodle.com",
-    phoneNumber: "5108322500",
+    phoneNumber: "(510) 832-2500",
     address: "545 International Blvd Ste B, Oakland, CA, 94606",
     type: ["Thai", "Noodles", "Food"],
     images: ["images/chaithai1.jpg", "images/chaithai2.jpg"],
@@ -92,7 +92,7 @@ var restaurants = [
   {
     name: "Kamakura Japanese Restaurant",
     website: "kamakurarestaurant.com",
-    phoneNumber: "5105219121",
+    phoneNumber: "(510) 521-9121",
     address: "2549 Santa Clara Ave, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/kamakura1.jpg", "images/kamakura2.jpg"],
@@ -104,7 +104,7 @@ var restaurants = [
   {
     name: "Sushi House",
     website: "e-sushihouse.com",
-    phoneNumber: "5108650999",
+    phoneNumber: "(510) 865-0999",
     address: "2375 Shoreline Dr, Alameda, CA, 94501",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/sushihouse1.jpg", "images/sushihouse2.jpg"],
@@ -116,7 +116,7 @@ var restaurants = [
   {
     name: "Chicken On Fire",
     website: "",
-    phoneNumber: "5107869161",
+    phoneNumber: "(510) 786-9161",
     address: "2619 Oliver Dr, Hayward, CA, 94545",
     type: ["Chicken", "Korean", "Food"],
     images: ["images/chickenfire1.jpg", "images/chickenfire2.jpg"],
@@ -128,7 +128,7 @@ var restaurants = [
   {
     name: "Frascati",
     website: "frascatisf.com",
-    phoneNumber: "4159281406",
+    phoneNumber: "(415) 928-1406",
     address: "1901 Hyde St, San Francisco, CA, 94109",
     type: ["Italian", "Mediterranean", "Food"],
     images: ["images/frascati1.jpg", "images/frascati2.jpg"],
@@ -152,7 +152,7 @@ var restaurants = [
   {
     name: "Kusakabe",
     website: "kusakabe-sf.com",
-    phoneNumber: "4157570155",
+    phoneNumber: "(415) 757-0155",
     address: "584 Washington St, San Francisco, CA, 94111",
     type: ["Sushi", "Japanese", "Food"],
     images: ["images/kusakabe1.jpg", "images/kusakabe2.jpg"],
@@ -164,7 +164,7 @@ var restaurants = [
   {
     name: "Bluebird Pizzeria",
     website: "",
-    phoneNumber: "5105621199",
+    phoneNumber: "(510) 562-1199",
     address: "496 E 14th St, San Leandro, CA, 94577",
     type: ["pizza", "Food"],
     images: ["images/bluebird1.jpg", "images/bluebird2.jpg"],
