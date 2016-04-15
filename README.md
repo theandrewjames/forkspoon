@@ -1,5 +1,5 @@
 # forkspoon
-[Check out forkspoon on Heroku](http://9dry-cliffs-15334.herokuapp.com)
+[Check out forkspoon on Heroku](http://dry-cliffs-15334.herokuapp.com)
 
 Search for restaurants, leave reviews and ratings, add new restaurants, tag reviews as useful or funny.
 ## Forkspoon home page
